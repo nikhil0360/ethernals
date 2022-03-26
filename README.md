@@ -5,10 +5,14 @@ This project is our submission for Etherenals, an ETHIndia Hackathon. We are mak
 
 # `Technologies`
 
-📩 `Moralis` for ethereum boilerplate, NFT APIs and storing music on IPFS
-🎥 `Livepeer` to export videos to IPFS 
-⚡️  `Polygon` lighting transactions to mint music and videos as NFTs
-🌊 `Superfluid` to make subscription model using CFA (Constant Flow Agreement) and IDA (Instant Distribution Agreement)
+## 📩 `Moralis` for ethereum boilerplate, NFT APIs and storing music on IPFS
+
+## 🎥 `Livepeer` to export videos to IPFS 
+
+## ⚡️  `Polygon` lighting transactions to mint music and videos as NFTs
+
+## 🌊 `Superfluid` to make subscription model using CFA (Constant Flow Agreement) and IDA (Instant 
+Distribution Agreement)
 
 
 # `ethereum-boilerplate`
