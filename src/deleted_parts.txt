@@ -1,0 +1,56 @@
+Header from App.jsx
+
+
+<Header style={styles.header}>
+            <img src={Spotify} alt="Logo" className="logo"></img>
+            {/* <Logo /> */}
+            {/* <SearchCollections setInputValue={setInputValue}/> */}
+            <Menu
+              theme="light"
+              mode="horizontal"
+              style={{
+                display: "flex",
+                fontSize: "17px",
+                fontWeight: "500",
+                marginLeft: "50px",
+                width: "100%",
+              }}
+              defaultSelectedKeys={["nftMarket"]}
+            >
+
+
+              {/* <Menu.Item key="nftMarket" onClick={() => setInputValue("explore")} >
+              <NavLink to="/NFTMarketPlace">🛒 Explore Market</NavLink>
+            </Menu.Item>
+            <Menu.Item key="nft">
+              <NavLink to="/nftBalance">🖼 Your Collection</NavLink>
+            </Menu.Item>
+            <Menu.Item key="transactions">
+              <NavLink to="/Transactions">📑 Your Transactions</NavLink>
+            </Menu.Item> */}
+
+
+
+              {/* new menu items here */}
+
+
+              <Menu.Item key="home">
+                <NavLink to="/">Home</NavLink>
+              </Menu.Item>
+
+              {/* <Menu.Item key="album">
+              <NavLink to="/album">Album</NavLink>
+            </Menu.Item> */}
+
+              <Menu.Item key="mintMusic">
+                <NavLink to="/mintMusic">Mint Music</NavLink>
+              </Menu.Item>
+
+
+            </Menu>
+            <div style={styles.headerRight}>
+              {/* <Chains />
+              <NativeBalance />
+              <Account /> */}
+            </div>
+          </Header>

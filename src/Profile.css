@@ -1,0 +1,14 @@
+.profile{
+    display: flex;
+    justify-content: space-around;
+    height: 100%;
+}
+
+.superfluidStream{
+    display: flex;
+}
+
+.superfluidDistribution{
+    display: flex;
+}
+
