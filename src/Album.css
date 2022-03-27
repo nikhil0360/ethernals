@@ -105,3 +105,12 @@
     padding-bottom: 13px;
     padding-top: 13px;
 }
+
+.videoPlayer{
+    background-color: black;
+}
+
+.videoPlayer video{
+    margin: auto;
+    display: flex;
+}

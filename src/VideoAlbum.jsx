@@ -6,9 +6,12 @@ import Opensea from "./images/opensea.png";
 import { ClockCircleOutlined } from "@ant-design/icons";
 import { useNFTTokenIds } from "hooks/useNFTTokenIds";
 import { Card, Button, Modal, Tooltip, Image, Alert, Typography } from "antd";
+import { useIPFS } from "hooks/useIPFS";
+import styles from "components/NativeTransactions/styles";
 
-const MintAlbum = ({ setNftAlbum }) => {
+const VideoAlbum = ({ setNftAlbum }) => {
     const { state: album } = useLocation();
+    const {resolveLink} = useIPFS();
 
     return (
         <>
@@ -20,7 +23,7 @@ const MintAlbum = ({ setNftAlbum }) => {
                         className="albumCover"
                     ></img>
                     <div className="albumDeets">
-                        <div>ALBUM</div>
+                        <div>VIDEO</div>
                         <div className="title">{album.name}</div>
                         <div className="artist">
                             {album.metadata.artist}
@@ -31,9 +34,6 @@ const MintAlbum = ({ setNftAlbum }) => {
                     </div>
                 </div>
                 <div className="topBan">
-                    <div className="playButton" onClick={() => setNftAlbum([album])}>
-                        PLAY
-                    </div>
                     <div
                         className="openButton"
                         onClick={() =>
@@ -46,27 +46,14 @@ const MintAlbum = ({ setNftAlbum }) => {
                         <img src={Opensea} className="openLogo" />
                     </div>
                 </div>
-                <div className="tableHeader">
-                    <div className="numberHeader">#</div>
-                    <div className="titleHeader">TITLE</div>
-                    <div className="numberHeader">
-                        <ClockCircleOutlined />
-                    </div>
+                <div className="videoPlayer">
+                    <video width="400" controls>
+                        <source src={resolveLink(album.metadata.animation_url)} type="video/mp4" />
+                    </video>
                 </div>
-                <div className="tableContent" key="0">
-                    <div className="numberHeader">{1}</div>
-                    <div
-                        className="titleHeader"
-                        style={{ color: "rgb(205, 203, 203)" }}
-                    >
-                        {album.metadata.name}
-                    </div>
-                    <div className="numberHeader">{album.metadata.duration}</div>
-                </div>
-
             </div>
         </>
     );
 };
 
-export default MintAlbum;
+export default VideoAlbum;

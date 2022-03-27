@@ -28,6 +28,7 @@ import MintMusic from "./MintMusic";
 import MintVideo from "./MintVideo";
 import MintAlbum from "./MintAlbum";
 import Profile from "./Profile";
+import VideoAlbum from "VideoAlbum";
 
 // import NFTMarketTransactions from "components/NFTMarketTransactions";
 const { Sider, Header, Footer, Content } = Layout;
@@ -164,6 +165,10 @@ const App = ({ isServerInfo }) => {
                 <MintAlbum setNftAlbum={setNftAlbum} />
               </Route>
 
+              <Route path="/videoalbum">
+                <VideoAlbum />
+              </Route>
+
               <Route path="/mintMusic">
                 <MintMusic />
               </Route>
@@ -175,6 +180,8 @@ const App = ({ isServerInfo }) => {
               <Route path="/profile">
                 <Profile />
               </Route>
+
+
 
               <Route path="/">
                 <Home />

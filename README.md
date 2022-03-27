@@ -11,8 +11,9 @@ This project is our submission for Etherenals, an ETHIndia Hackathon. We are mak
 
 ## ⚡️  `Polygon` lighting transactions to mint music and videos as NFTs
 
-## 🌊 `Superfluid` to make subscription model using CFA (Constant Flow Agreement) and IDA (Instant 
-Distribution Agreement)
+## 🌊 `Superfluid` to make subscription model using CFA (Constant Flow Agreement) and IDA (Instant Distribution Agreement)
+
+## ⛽️❌ `Biconomy` for meta-transactions (gasless transactions)
 
 
 # `ethereum-boilerplate`

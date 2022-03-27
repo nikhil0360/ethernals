@@ -24,7 +24,9 @@
     "yarn": "^1.22.17",
     "graphql": "16.2.0",
     "react-hook-form": "7.22.5",
-    "react-bootstrap": "2.1.0"
+    "react-bootstrap": "2.1.0",
+    "@biconomy/mexa": "^2.0.24",
+    "web3": "^1.6.1"
   },
   "scripts": {
     "start": "react-scripts start",
