@@ -26,6 +26,7 @@ import { SearchOutlined, DownCircleOutlined } from "@ant-design/icons";
 import Player from "./components/AudioPlayer";
 import MintMusic from "./MintMusic";
 import MintVideo from "./MintVideo";
+import MintAlbum from "./MintAlbum";
 import Profile from "./Profile";
 
 // import NFTMarketTransactions from "components/NFTMarketTransactions";
@@ -157,6 +158,10 @@ const App = ({ isServerInfo }) => {
 
               <Route path="/album">
                 <Album setNftAlbum={setNftAlbum} />
+              </Route>
+
+              <Route path="/mintalbum">
+                <MintAlbum setNftAlbum={setNftAlbum} />
               </Route>
 
               <Route path="/mintMusic">

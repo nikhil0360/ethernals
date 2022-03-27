@@ -11,7 +11,6 @@ function MoralisDappProvider({ children }) {
   ); //Smart Contract ABI here
   const [marketAddress, setMarketAddress] = useState(); //Smart Contract Address Here
 
-
   const [sf, setSf] = useState();
 
   useEffect(() => {

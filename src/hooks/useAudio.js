@@ -9,7 +9,7 @@ const useAudio = (url) => {
   const [trackProgress, setTrackProgress] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [volume, setVolume] = useState(1);
-  const audioRef = useRef(new Audio(resolveLink(JSON.parse(audio[trackIndex].metadata).animation_url)));
+  const audioRef = useRef(new Audio(resolveLink(audio[trackIndex].metadata.animation_url)));
   
   const intervalRef = useRef();
   const isReady = useRef(false);
@@ -61,7 +61,7 @@ const useAudio = (url) => {
 
   useEffect(() => {
     audioRef.current.pause();
-    audioRef.current = new Audio(resolveLink(JSON.parse(audio[trackIndex].metadata).animation_url));
+    audioRef.current = new Audio(resolveLink(audio[trackIndex].metadata.animation_url));
     audioRef.current.volume = volume;
     setTrackProgress(Math.round(audioRef.current.currentTime));
     if (isReady.current) {

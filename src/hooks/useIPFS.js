@@ -1,6 +1,7 @@
 export const useIPFS = () => {
   const resolveLink = (url) => {
-    if (!url || !url.includes("ipfs://")) return url;
+    console.log(url);
+    if (!url || !url.indexOf("ipfs://")===0 ) return url;
     return url.replace("ipfs://", "https://gateway.ipfs.io/ipfs/");
   };
 

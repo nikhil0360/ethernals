@@ -1,36 +1,21 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
 import "./Album.css";
-import Opensea from "./images/opensea.png";
-import { ClockCircleOutlined } from "@ant-design/icons";
 import NativeBalance from "./components/NativeBalance";
 import Address from "./components/Address/Address";
 import Blockie from "./components/Blockie";
 import { Card, Button, Modal, Typography, Divider, Input } from "antd";
 import { useState } from "react";
-import { useMoralisDapp } from "providers/MoralisDappProvider/MoralisDappProvider";
 import { useWeb3ExecuteFunction } from "react-moralis";
-import { Steps } from 'antd';
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link
-} from "react-router-dom";
 import { useMoralisFile } from "react-moralis";
 import axios from 'axios';
-var util = require('util')
-const { Text } = Typography;
 
 function sleep(milliseconds) {
     const date = Date.now();
     let currentDate = null;
     do {
-      currentDate = Date.now();
+        currentDate = Date.now();
     } while (currentDate - date < milliseconds);
-  }
-  
-  
+}
 
 const styles = {
     title: {
@@ -62,27 +47,24 @@ const styles = {
 };
 
 
-
-
 const MintVideo = () => {
     const [isPending, setIsPending] = useState(false);
     const [artist, setArtist] = useState("");
     const [name, setName] = useState("");
     const [year, setYear] = useState(0);
     const [imageFile, setImageFile] = useState("");
-    const [musicFile, setMusicFile] = useState("");
+    const [videoFile, setVideoFile] = useState("");
     const { saveFile } = useMoralisFile();
-    const [imageHash, setImageHash] = useState("");
-    const [musicHash, setMusicHash] = useState("");
-    const [metadataHash, setMetadataHash] = useState("");
-
-    const fileInput = (e) => setImageFile(e.target.files[0]);
+    const contractAddress = "0x886165bbF0049593C454c0c795F3E26Ecd3c4680";
+    const contractABI = '[{"inputs":[],"stateMutability":"payable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"owner","type":"address"},{"indexed":true,"internalType":"address","name":"approved","type":"address"},{"indexed":true,"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"Approval","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"owner","type":"address"},{"indexed":true,"internalType":"address","name":"operator","type":"address"},{"indexed":false,"internalType":"bool","name":"approved","type":"bool"}],"name":"ApprovalForAll","type":"event"},{"inputs":[{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"approve","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"string","name":"tokenURI","type":"string"}],"name":"createToken","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"from","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"safeTransferFrom","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"from","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"},{"internalType":"bytes","name":"_data","type":"bytes"}],"name":"safeTransferFrom","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"operator","type":"address"},{"internalType":"bool","name":"approved","type":"bool"}],"name":"setApprovalForAll","outputs":[],"stateMutability":"nonpayable","type":"function"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"from","type":"address"},{"indexed":true,"internalType":"address","name":"to","type":"address"},{"indexed":true,"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"Transfer","type":"event"},{"inputs":[{"internalType":"address","name":"from","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"transferFrom","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"withdraw","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"owner","type":"address"}],"name":"balanceOf","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"getApproved","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"owner","type":"address"},{"internalType":"address","name":"operator","type":"address"}],"name":"isApprovedForAll","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"isOwner","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"name","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address payable","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"ownerOf","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"bytes4","name":"interfaceId","type":"bytes4"}],"name":"supportsInterface","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"symbol","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"tokenURI","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"}]';
+    const contractProcessor = useWeb3ExecuteFunction();
+    const contractABIJson = JSON.parse(contractABI);
 
     function succList() {
         let secondsToGo = 5;
         const modal = Modal.success({
             title: "Success!",
-            content: `Your NFT is minted, you can look it in your collections`,
+            content: `Your video NFT is minted, you can look it in your collections`,
         });
         setTimeout(() => {
             modal.destroy();
@@ -93,7 +75,7 @@ const MintVideo = () => {
         let secondsToGo = 5;
         const modal = Modal.error({
             title: "Error!",
-            content: `There was a problem minting your NFT`,
+            content: `There was a problem minting your video NFT`,
         });
         setTimeout(() => {
             modal.destroy();
@@ -101,95 +83,22 @@ const MintVideo = () => {
     }
 
     async function mint() {
+        const apiKey = "6c0a0b1e-4800-4949-a31f-40f1bbc00e92";
         setIsPending(true);
 
-        // await saveFile(imageFile.name, imageFile, {
-        //     type: "image",
-        //     saveIPFS: true,
-        //     saveFile: false,
-        //     onSuccess: (result) => {
-        //         setImageHash(result._hash)
-        //         console.log(imageHash)
-        //         // setIsPending(false);
-        //     },
-        //     onError: (error) => {
-        //         console.log(error)
-        //         setIsPending(false);
-        //     },
-        // });
-
-        // await saveFile(musicFile.name, musicFile, {
-        //     type: "mp3",
-        //     saveIPFS: true,
-        //     saveFile: false,
-        //     onSuccess: (result) => {
-        //         setMusicHash(result._hash)
-        //         console.log(musicHash)
-        //         // setIsPending(false);
-        //     },
-        //     onError: (error) => {
-        //         console.log(error)
-        //         setIsPending(false);
-        //     },
-        // });
-
-
-        // let metadata = {
-        //     name: name,
-        //     artist: artist,
-        //     year: year,
-        //     image: "/ipfs/" + imageHash,
-        //     animation_url: "/ipfs/" + musicHash
-        // }
-
-        // const base64 = btoa(JSON.stringify(metadata));
-        // console.log(base64);
-
-        // await saveFile("metadata.json",
-        //     { base64 },
-        //     {
-        //         type: "base64",
-        //         saveIPFS: true,
-        //         saveFile: false,
-        //         onSuccess: (result) => {
-        //             setMetadataHash(result._hash)
-        //             console.log(metadataHash)
-        //             // setIsPending(false);
-        //         },
-        //         onError: (error) => {
-        //             console.log(error._hash)
-        //             setIsPending(false);
-        //         },
-        //     });
-
-        // console.log("ipfs://" + metadataHash);
-
-        // const p = 1 * ("1e" + 13);
-        // const ops = {
-        //     contractAddress: marketAddress,
-        //     functionName: createItemFunction,
-        //     abi: contractABIJson,
-        //     params: {},
-        //     msgValue: p
-        // };
-
-        // await contractProcessor.fetch({
-        //     params: ops,
-        //     onSuccess: () => {
-        //         console.log("success");
-        //         setIsPending(false);
-        //         succList();
-        //         setStatus("finish")
-        //     },
-        //     onError: (error) => {
-        //         setIsPending(false);
-        //         failList();
-        //     },
-        // });
-
-        const apiKey = "6c0a0b1e-4800-4949-a31f-40f1bbc00e92";
-
-
+        let imageHash;
+        await saveFile(imageFile.name, imageFile, {
+            type: "image",
+            saveIPFS: true,
+            saveFile: false,
+            onSuccess: (result) => {
+                imageHash = result._hash;
+            },
+            onError: (error) => {
+                console.log(error)
+                setIsPending(false);
+            },
+        });
 
         // ********* get url for upload ******************
         const options = {
@@ -197,13 +106,10 @@ const MintVideo = () => {
                 'Authorization': 'Bearer ' + apiKey,
                 'Content-Type': 'application/json'
             }
-            // data: {
-            //     'name' : 'Example file'
-            // }
         }
 
         const data = {
-            name: musicFile.name
+            name: videoFile.name
         }
 
         let url;
@@ -233,17 +139,15 @@ const MintVideo = () => {
         console.log(url);
         console.log(assetID);
 
-
         // ********* uploading assets on livepeer ******************
         const options2 = {
             headers: {
                 'Authorization': 'Bearer ' + apiKey,
                 'Content-Type': 'video/mp4'
-                //  'Content-Type': 'application/octet-stream'
             }
         }
 
-        const data2 = musicFile;
+        const data2 = videoFile;
 
         await axios.put(url, data2, options2).then(res => {
             console.log(res);
@@ -270,51 +174,48 @@ const MintVideo = () => {
 
 
         while (assetStatus == "waiting") {
-            console.log("in loop 1.....")
+            console.log("in loop.....")
             sleep(3000);
-            console.log("in loop 2.....")
-                    // ************* Listing Assets ************** // 
-                    const options3 = {
-                        headers: {
-                            'Authorization': 'Bearer ' + apiKey,
-                        }
-                    }
-                    await axios.get("https://livepeer.com/api/asset/" + assetID, options3).then(res => {
-                        console.log(res);
-                        console.log(res.status);
-                        assetStatus = res.data.status;
-                      }).catch(function (error) {
-                        if (error.response) {
-                          // Request made and server responded
-                          console.log(error.response.data);
-                          console.log(error.response.status);
-                          console.log(error.response.headers);
-                        } else if (error.request) {
-                          // The request was made but no response was received
-                          console.log(error.request);
-                        } else {
-                          // Something happened in setting up the request that triggered an Error
-                          console.log('Error', error.message);
-                        }
-                    });
+            console.log("in loop after sleep.....")
+            // ************* Listing Assets ************** // 
+            const options3 = {
+                headers: {
+                    'Authorization': 'Bearer ' + apiKey,
+                }
+            }
+            await axios.get("https://livepeer.com/api/asset/" + assetID, options3).then(res => {
+                console.log(res);
+                console.log(res.status);
+                assetStatus = res.data.status;
+            }).catch(function (error) {
+                if (error.response) {
+                    // Request made and server responded
+                    console.log(error.response.data);
+                    console.log(error.response.status);
+                    console.log(error.response.headers);
+                } else if (error.request) {
+                    // The request was made but no response was received
+                    console.log(error.request);
+                } else {
+                    // Something happened in setting up the request that triggered an Error
+                    console.log('Error', error.message);
+                }
+            });
         }
 
         console.log(assetStatus);
-
         // ************* Export Asset ************** // 
 
         const options4 = {
             headers: {
                 'Authorization': 'Bearer ' + apiKey,
                 'Content-Type': 'application/json'
-                //  'Content-Type': 'application/octet-stream'
             }
         }
 
         const data4 = {
-            ipfs: {}
+            ipfs: {},
         }
-
 
         let task;
         let taskID;
@@ -344,54 +245,103 @@ const MintVideo = () => {
 
 
         // // checking if the task is completed
-
         console.log("we are waiting for the task to get ready now");
         let lastProgress = "0";
         let taskIPFS;
         let taskPhase = "notCompleted"
 
         while (parseFloat(lastProgress) < 0.999) {
-            if(taskPhase == "completed"){
+            if (taskPhase == "completed") {
                 break;
             }
-            console.log("in task 1.....")
+            console.log("in task.....")
             sleep(3000);
-            console.log("in task 2.....")
-                    // ************* Listing Assets ************** // 
-                    const options3 = {
-                        headers: {
-                            'Authorization': 'Bearer ' + apiKey,
-                        }
-                    }
-                    await axios.get("https://livepeer.com/api/task/" + taskID, options3).then(res => {
-                        console.log(res);
-                        console.log(res.data.status.progress);
-                        lastProgress = res.data.status.progress;
-                        taskPhase = res.data.status.phase;
-                        taskIPFS = res;
-                      }).catch(function (error) {
-                        if (error.response) {
-                          // Request made and server responded
-                          console.log(error.response.data);
-                          console.log(error.response.status);
-                          console.log(error.response.headers);
-                        } else if (error.request) {
-                          // The request was made but no response was received
-                          console.log(error.request);
-                        } else {
-                          // Something happened in setting up the request that triggered an Error
-                          console.log('Error', error.message);
-                        }
-                    });
+            console.log("in task after sleep.....")
+            // ************* Listing Assets ************** // 
+            const options3 = {
+                headers: {
+                    'Authorization': 'Bearer ' + apiKey,
+                }
+            }
+            await axios.get("https://livepeer.com/api/task/" + taskID, options3).then(res => {
+                console.log(res);
+                console.log(res.data.status.progress);
+                lastProgress = res.data.status.progress;
+                taskPhase = res.data.status.phase;
+                taskIPFS = res;
+            }).catch(function (error) {
+                if (error.response) {
+                    // Request made and server responded
+                    console.log(error.response.data);
+                    console.log(error.response.status);
+                    console.log(error.response.headers);
+                } else if (error.request) {
+                    // The request was made but no response was received
+                    console.log(error.request);
+                } else {
+                    // Something happened in setting up the request that triggered an Error
+                    console.log('Error', error.message);
+                }
+            });
         }
 
         console.log(lastProgress);
-        console.log(taskIPFS.data.output.export.ipfs);
+        
+        let videoHash = taskIPFS.data.output.export.ipfs.videoFileCid
 
-        const metipfs = taskIPFS.data.output.export.ipfs
-        console.log(metipfs);
+        console.log(`video hash is ${videoHash}`);
 
-        setIsPending(false);
+        let metadata = {
+            name: name,
+            artist: artist,
+            year: year,
+            image: "/ipfs/" + imageHash,
+            animation_url: "/ipfs/" + videoHash
+        }
+
+        const base64 = btoa(JSON.stringify(metadata));
+
+        let metadataHash;
+        await saveFile("metadata.json",
+            { base64 },
+            {
+                type: "base64",
+                saveIPFS: true,
+                saveFile: false,
+                onSuccess: (result) => {
+                    metadataHash = result._hash;
+                },
+                onError: (error) => {
+                    console.log(error)
+                    setIsPending(false);
+                    failList();
+                },
+            });
+
+        console.log(metadataHash);
+
+        const ops = {
+            contractAddress: contractAddress,
+            functionName: "createToken",
+            abi: contractABIJson,
+            params: {
+                tokenURI: `ipfs://${metadataHash}`
+            },
+        };
+
+        await contractProcessor.fetch({
+            params: ops,
+            onSuccess: () => {
+                console.log("success");
+                setIsPending(false);
+                succList();
+            },
+            onError: (error) => {
+                console.log(error);
+                setIsPending(false);
+                failList();
+            },
+        });
     };
 
     return (
@@ -416,11 +366,11 @@ const MintVideo = () => {
 
 
                     <label for="image">Image File: </label>
-                    <Input type="file" style={styles.input} id="image" onChange={fileInput} />
+                    <Input type="file" style={styles.input} id="image" onChange={(e) => setImageFile(e.target.files[0])} />
                     <Divider />
 
-                    <label for="music">Video File: </label>
-                    <Input type="file" style={styles.input} id="music" onChange={(e) => setMusicFile(e.target.files[0])} />
+                    <label for="video">Video File: </label>
+                    <Input type="file" style={styles.input} id="video" onChange={(e) => setVideoFile(e.target.files[0])} />
 
 
 

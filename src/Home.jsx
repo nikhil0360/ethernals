@@ -12,7 +12,6 @@ import {
 } from "@ant-design/icons";
 import { useMoralisDapp } from "providers/MoralisDappProvider/MoralisDappProvider";
 import { getExplorer } from "helpers/networks";
-
 // super fluid 
 import { CreateFlow } from "./CreateFlow";
 
@@ -100,18 +99,20 @@ const Home = () => {
         <TabPane tab="FEATURED" key="1">
           <h1 className="featuredTitle">Today Is The Day</h1>
           <div className="albums">
-            {library.map((e) => (
-              <Link to={{
-                pathname: "/album",
-                state: e
-              }} className="albumSelection">
-                <img
-                  src={e.image}
-                  alt="bull"
-                  style={{ width: "150px", marginBottom: "10px" }}
-                ></img>
-                <p>{e.title}</p>
-              </Link>
+            {library.map((e, i) => (
+              <div key={i} className="albumSelection">
+                <Link to={{
+                  pathname: "/album",
+                  state: e
+                }}>
+                  <img
+                    src={e.image}
+                    alt="bull"
+                    style={{ width: "150px", marginBottom: "10px" }}
+                  ></img>
+                  <p>{e.title}</p>
+                </Link>
+              </div>
             ))}
           </div>
         </TabPane>
@@ -119,65 +120,73 @@ const Home = () => {
           <h1 className="featuredTitle">Pop Music</h1>
           <div className="albums">
             {library.slice(7, 13).map((e) => (
-              <Link to={{
-                pathname: "/album",
-                state: e
-              }} state={e} className="albumSelection">
-                <img
-                  src={e.image}
-                  alt="bull"
-                  style={{ width: "150px", marginBottom: "10px" }}
-                ></img>
-                <p>{e.title}</p>
-              </Link>
+              <div className="albumSelection">
+                <Link to={{
+                  pathname: "/album",
+                  state: e
+                }} state={e}>
+                  <img
+                    src={e.image}
+                    alt="bull"
+                    style={{ width: "150px", marginBottom: "10px" }}
+                  ></img>
+                  <p>{e.title}</p>
+                </Link>
+              </div>
             ))}
           </div>
           <h1 className="featuredTitle">Top Hits</h1>
           <div className="albums">
             {library.slice(5, 11).map((e) => (
-              <Link to={{
-                pathname: "/album",
-                state: e
-              }} state={e} className="albumSelection">
-                <img
-                  src={e.image}
-                  alt="bull"
-                  style={{ width: "150px", marginBottom: "10px" }}
-                ></img>
-                <p>{e.title}</p>
-              </Link>
+              <div className="albumSelection">
+                <Link to={{
+                  pathname: "/album",
+                  state: e
+                }} state={e}>
+                  <img
+                    src={e.image}
+                    alt="bull"
+                    style={{ width: "150px", marginBottom: "10px" }}
+                  ></img>
+                  <p>{e.title}</p>
+                </Link>
+              </div>
             ))}
           </div>
           <h1 className="featuredTitle">Country</h1>
           <div className="albums">
             {library.slice(0, 6).map((e) => (
-              <Link to={{
-                pathname: "/album",
-                state: e
-              }} state={e} className="albumSelection">
-                <img
-                  src={e.image}
-                  alt="bull"
-                  style={{ width: "150px", marginBottom: "10px" }}
-                ></img>
-                <p>{e.title}</p>
-              </Link>
+              <div className="albumSelection">
+                <Link to={{
+                  pathname: "/album",
+                  state: e
+                }} state={e}>
+                  <img
+                    src={e.image}
+                    alt="bull"
+                    style={{ width: "150px", marginBottom: "10px" }}
+                  ></img>
+                  <p>{e.title}</p>
+                </Link>
+              </div>
             ))}
           </div>
           <h1 className="featuredTitle">Classics</h1>
           <div className="albums">
             {library.slice(5, 11).map((e) => (
-              <Link to={{
-                pathname: "/album",
-                state: e
-              }} state={e} className="albumSelection">
-                <img
-                  src={e.image}
-                  alt="bull"
-                  style={{ width: "150px", marginBottom: "10px" }}
-                ></img>
-                <p>{e.title}</p>
-              </Link>
+              <div className="albumSelection">
+                <Link to={{
+                  pathname: "/album",
+                  state: e
+                }} state={e}>
+                  <img
+                    src={e.image}
+                    alt="bull"
+                    style={{ width: "150px", marginBottom: "10px" }}
+                  ></img>
+                  <p>{e.title}</p>
+                </Link>
+              </div>
             ))}
           </div>
         </TabPane>
@@ -185,35 +194,38 @@ const Home = () => {
           <h1 className="featuredTitle">Hot Off The Press</h1>
           <div className="albums">
             {library.map((e) => (
-              <Link to={{
-                pathname: "/album",
-                state: e
-              }} state={e} className="albumSelection">
-                <img
-                  src={e.image}
-                  alt="bull"
-                  style={{ width: "150px", marginBottom: "10px" }}
-                ></img>
-                <p>{e.title}</p>
-              </Link>
+              <div className="albumSelection">
+                <Link to={{
+                  pathname: "/album",
+                  state: e
+                }} state={e}>
+                  <img
+                    src={e.image}
+                    alt="bull"
+                    style={{ width: "150px", marginBottom: "10px" }}
+                  ></img>
+                  <p>{e.title}</p>
+                </Link>
+              </div>
             ))}
           </div>
         </TabPane>
         <TabPane tab="CRYPTODEVS" key="4">
-          {totalNFTs !== undefined && (
-            <>
-              {!fetchSuccess && (
-                <>
-                  <Alert
-                    message="Unable to fetch all NFT metadata... We are searching for a solution, please try again later!"
-                    type="warning"
-                  />
-                  <div style={{ marginBottom: "10px" }}></div>
-                </>
-              )}
+          <>
+            {totalNFTs !== undefined && (
+              <>
+                {!fetchSuccess && (
+                  <>
+                    <Alert
+                      message="Unable to fetch all NFT metadata... We are searching for a solution, please try again later!"
+                      type="warning"
+                    />
+                    <div style={{ marginBottom: "10px" }}></div>
+                  </>
+                )}
 
 
-              {/* <div style={styles.NFTs}>
+                {/* <div style={styles.NFTs}>
             {NFTTokenIds.slice(0, 20).map((nft, index) => (
               <Card
                 hoverable
@@ -249,23 +261,26 @@ const Home = () => {
             ))}
 
           </div> */}
-              <div className="albums">
-                {NFTTokenIds.slice(0, 20).map((e, index) => (
-                  <Link to={{
-                    pathname: "/album",
-                    state: e
-                  }} state={e} className="albumSelection">
-                    <img
-                      src={e.image}
-                      alt={fallbackImg}
-                      style={{ width: "150px", marginBottom: "10px" }}
-                    ></img>
-                    <p>{e.metadata.name}</p>
-                  </Link>
-                ))}
-              </div>
-            </>
-          )}
+                <div className="albums">
+                  {NFTTokenIds.slice(0, 20).map((e, i) => (
+                    <div key={i} className="albumSelection">
+                      <Link to={{
+                        pathname: "/mintalbum",
+                        state: e
+                      }} state={e}>
+                        <img
+                          src={e.image}
+                          alt={fallbackImg}
+                          style={{ width: "150px", marginBottom: "10px" }}
+                        ></img>
+                        <p>{e.metadata.name}</p>
+                      </Link>
+                    </div>
+                  ))}
+                </div>
+              </>
+            )}
+          </>
         </TabPane >
 
         {/* <TabPane tab="superfluid" key="5">

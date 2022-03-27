@@ -26,8 +26,19 @@
     text-align: center;
     transition: transform .4s;
   }
+
+  .albumSelection p {
+    color:rgb(205, 203, 203);
+    text-align: center;
+    transition: transform .4s;
+  }
   
   .albumSelection:hover {
+    color: white;
+    transform: scale(1.05);
+  }
+
+  .albumSelection:hover p {
     color: white;
     transform: scale(1.05);
   }

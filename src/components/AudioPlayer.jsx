@@ -33,9 +33,9 @@ const Player = ({ url }) => {
   return (
     <>
     <div className="buttons" style={{width:"300px", justifyContent:"start"}}>
-        <img className="cover" src={resolveLink(JSON.parse(url[trackIndex].metadata).image)} alt="currentCover" />
+        <img className="cover" src={resolveLink(url[trackIndex].metadata.image)} alt="currentCover" />
         <div>
-        <div className="songTitle">{JSON.parse(url[trackIndex].metadata).name}</div>
+        <div className="songTitle">{url[trackIndex].metadata.name}</div>
         <div className="songAlbum">{url[trackIndex].name}</div>
         </div>
     </div>
