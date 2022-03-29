@@ -45,7 +45,7 @@ contract spo3ify is ERC721URIStorage {
         ISuperfluid _host,
         IInstantDistributionAgreementV1 _ida,
         ISuperfluidToken _token
-    ) payable ERC721 ("VideoNFT", "VFM"){
+    ) payable ERC721 ("Spo3ifyNFT", "S3YNFT"){
         _ADMIN = admin;
         token = _token;
         _idav1Lib = IDAv1Library.InitData(_host, _ida);
