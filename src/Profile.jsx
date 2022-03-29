@@ -56,7 +56,7 @@ const styles = {
 
 
 const Profile = () => {
-    const contractAddress = "0x68E65AB834b4e87D01837eB1375387abb6724ab4";
+    const contractAddress = "0x68E65AB834b4e87D01837eB1375387abb6724ab4"; // IDA contract address
     const contractABI = '[{"inputs":[],"name":"airdrop","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"approveSubscription","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"claimBalance","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"revokeSubscription","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"admin","type":"address"},{"internalType":"contract ISuperfluid","name":"_host","type":"address"},{"internalType":"contract IInstantDistributionAgreementV1","name":"_ida","type":"address"},{"internalType":"contract ISuperfluidToken","name":"_token","type":"address"}],"stateMutability":"nonpayable","type":"constructor"},{"inputs":[{"internalType":"address","name":"subscriber","type":"address"},{"internalType":"uint128","name":"units","type":"uint128"}],"name":"updateUnits","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"AIRDROP_AMOUNT","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"AIRDROP_INTERVAL","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getContractDaiXBalance","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"lastAirdrop","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"token","outputs":[{"internalType":"contract ISuperfluidToken","name":"","type":"address"}],"stateMutability":"view","type":"function"}]';
     const contractProcessor = useWeb3ExecuteFunction();
     const contractABIJson = JSON.parse(contractABI);
@@ -136,15 +136,15 @@ const Profile = () => {
                 <div className="superfluidStream">
                     <Card
                         style={styles.card}
-                        title={
-                            <div style={styles.header}>
-                                <Blockie scale={5} avatar currentWallet />
-                                <Address size="6" copyable />
-                                <NativeBalance />
-                            </div>
-                        }
+                        // title={
+                        //     <div style={styles.header}>
+                        //         <Blockie scale={5} avatar currentWallet />
+                        //         <Address size="6" copyable />
+                        //         <NativeBalance />
+                        //     </div>
+                        // }
                     >
-                        <Button
+                        {/* <Button
                             type="primary"
                             size="large"
                             // loading={isPending}
@@ -162,7 +162,7 @@ const Profile = () => {
                             onClick={() => console.log("stream ended")}
                         >
                             Stop Stream
-                        </Button>
+                        </Button> */}
 
                         <div className="superfluid">
                             <CreateFlow />
@@ -174,19 +174,25 @@ const Profile = () => {
                 <div className="superfluidDistribution">
                     <Card
                         style={styles.card}
-                        title={
-                            <div style={styles.header}>
-                                <Blockie scale={5} avatar currentWallet />
-                                <Address size="6" copyable />
-                                <NativeBalance />
-                            </div>
-                        }
+                        // title={
+                        //     <div style={styles.header}>
+                        //         <Blockie scale={5} avatar currentWallet />
+                        //         <Address size="6" copyable />
+                        //         <NativeBalance />
+                        //     </div>
+                        // }
                     >
+
+                        <p>Hi, If you are a creator who minted any music or video as NFT, you are eligilbe to 
+                            to be part of creator royalty. Click below to subscribe to our contract and after you have
+                            subscribe claim your rewards daily. 
+                        </p>
+
                         <Button
                             type="primary"
                             size="large"
                             // loading={isPending}
-                            style={{ width: "100%", marginTop: "0px", marginBottom: "20px", background: "#52c41a" }}
+                            style={{ width: "100%", margin: "10px", background: "#52c41a" }}
                             onClick={subscribe}
                         >
                             Subscribe
@@ -196,7 +202,7 @@ const Profile = () => {
                             type="primary"
                             size="large"
                             // loading={isPending}
-                            style={{ width: "100%", marginTop: "0px", marginBottom: "20px", background: "#13c2c2" }}
+                            style={{ width: "100%",  margin: "10px", background: "#13c2c2" }}
                             onClick={claim}
                         >
                             Claim
