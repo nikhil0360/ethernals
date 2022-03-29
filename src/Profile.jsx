@@ -1,25 +1,8 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
 import "./Profile.css";
-import Opensea from "./images/opensea.png";
-import { ClockCircleOutlined } from "@ant-design/icons";
-import NativeBalance from "./components/NativeBalance";
-import Address from "./components/Address/Address";
-import Blockie from "./components/Blockie";
-import { Card, Button, Modal, Typography, Divider, Input } from "antd";
-import { useState } from "react";
-import { useMoralisDapp } from "providers/MoralisDappProvider/MoralisDappProvider";
+import { Card, Button, Modal } from "antd";
 import { useWeb3ExecuteFunction } from "react-moralis";
-import { Steps } from 'antd';
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link
-} from "react-router-dom";
-import { useMoralisFile } from "react-moralis";
 import { CreateFlow } from "CreateFlow";
-const { Text } = Typography;
 
 
 const styles = {
@@ -39,8 +22,6 @@ const styles = {
         width: "450px",
         fontSize: "16px",
         fontWeight: "500",
-        // margin: "auto",
-        // background: "white"
     },
 
     steps_action: {
@@ -52,36 +33,35 @@ const styles = {
     },
 };
 
+function succList() {
+    let secondsToGo = 5;
+    const modal = Modal.success({
+        title: "Success!",
+        content: `Your transaction was successful!`,
+    });
+    setTimeout(() => {
+        modal.destroy();
+    }, secondsToGo * 1000);
+}
 
-
+function failList() {
+    let secondsToGo = 5;
+    const modal = Modal.error({
+        title: "Error!",
+        content: `Your transaction failed due to some error!`,
+    });
+    setTimeout(() => {
+        modal.destroy();
+    }, secondsToGo * 1000);
+}
 
 const Profile = () => {
     const contractAddress = "0x68E65AB834b4e87D01837eB1375387abb6724ab4"; // IDA contract address
     const contractABI = '[{"inputs":[],"name":"airdrop","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"approveSubscription","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"claimBalance","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"revokeSubscription","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"admin","type":"address"},{"internalType":"contract ISuperfluid","name":"_host","type":"address"},{"internalType":"contract IInstantDistributionAgreementV1","name":"_ida","type":"address"},{"internalType":"contract ISuperfluidToken","name":"_token","type":"address"}],"stateMutability":"nonpayable","type":"constructor"},{"inputs":[{"internalType":"address","name":"subscriber","type":"address"},{"internalType":"uint128","name":"units","type":"uint128"}],"name":"updateUnits","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"AIRDROP_AMOUNT","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"AIRDROP_INTERVAL","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getContractDaiXBalance","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"lastAirdrop","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"token","outputs":[{"internalType":"contract ISuperfluidToken","name":"","type":"address"}],"stateMutability":"view","type":"function"}]';
     const contractProcessor = useWeb3ExecuteFunction();
     const contractABIJson = JSON.parse(contractABI);
-    function succList() {
-        let secondsToGo = 5;
-        const modal = Modal.success({
-            title: "Success!",
-            content: `Your NFT is minted, you can look it in your collections`,
-        });
-        setTimeout(() => {
-            modal.destroy();
-        }, secondsToGo * 1000);
-    }
 
-    function failList() {
-        let secondsToGo = 5;
-        const modal = Modal.error({
-            title: "Error!",
-            content: `There was a problem minting your NFT`,
-        });
-        setTimeout(() => {
-            modal.destroy();
-        }, secondsToGo * 1000);
-    }
-
+    
     async function subscribe() {
         console.log("subscribe");
 
@@ -96,11 +76,11 @@ const Profile = () => {
             params: ops,
             onSuccess: () => {
                 console.log("success");
-                // succList();
+                succList();
             },
             onError: (err) => {
-                // failList();
-                // console.log(err);
+                failList();
+                console.log(err);
             },
         });
     };
@@ -119,11 +99,11 @@ const Profile = () => {
             params: ops,
             onSuccess: () => {
                 console.log("success");
-                // succList();
+                succList();
             },
             onError: (error) => {
-                // failList();
-                // console.log(error);
+                failList();
+                console.log(error);
             },
         });
     };

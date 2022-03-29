@@ -4,81 +4,14 @@ import "./Home.css";
 import { Tabs } from "antd";
 import { library } from "./helpers/albumList";
 import { useNFTTokenIds } from "hooks/useNFTTokenIds";
-import { Card, Button, Modal, Tooltip, Image, Alert, Typography } from "antd";
-import {
-  FileSearchOutlined,
-  RightCircleOutlined,
-  ShoppingCartOutlined,
-} from "@ant-design/icons";
+import { Card, Alert, Image } from "antd";
 import { useMoralisDapp } from "providers/MoralisDappProvider/MoralisDappProvider";
-import { getExplorer } from "helpers/networks";
-// super fluid 
-import { CreateFlow } from "./CreateFlow";
 import { useIPFS } from "hooks/useIPFS";
 
-
-
-const { Meta } = Card;
-
 const styles = {
-  title: {
-    fontSize: "30px",
-    fontWeight: "600",
-  },
-  header: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-  },
-  card: {
-    boxShadow: "0 0.5rem 1.2rem rgb(189 197 209 / 20%)",
-    border: "1px solid #e7eaf3",
-    borderRadius: "1rem",
-    width: "450px",
-    fontSize: "16px",
-    fontWeight: "500",
-  },
-
-  steps_action: {
-    marginTop: "24px",
-  },
-
-  NFTs: {
-    display: "flex",
-    flexWrap: "wrap",
-    WebkitBoxPack: "start",
-    justifyContent: "flex-start",
-    margin: "0 auto",
-    maxWidth: "1000px",
-    gap: "10px",
-    marginTop: "20px",
-  },
-  banner: {
-    display: "flex",
-    justifyContent: "space-evenly",
-    alignItems: "center",
-    margin: "0 auto",
-    width: "600px",
-    borderRadius: "10px",
-    // height: "150px",
-    // marginBottom: "20px",
-    // paddingBottom: "20px",
-    // borderBottom: "solid 1px #e3e3e3",
-    flexDirection: "column",
-  },
-  logo: {
-    height: "250px",
-    width: "250px",
-    borderRadius: "50%",
-    // positon: "relative",
-    // marginTop: "-80px",
-    border: "solid 4px white",
-  },
-  text: {
-    color: "#041836",
-    fontSize: "27px",
-    fontWeight: "bold",
-    textAlign: "center"
+  image: {
+    width: "150px",
+    marginBottom: "10px"
   },
 };
 
@@ -90,10 +23,7 @@ const Home = () => {
   const contractAddress = "0x3eEDc39f195EE85cD6e2e3226911158c82b3Ab61";
   const { NFTTokenIds, totalNFTs, fetchSuccess } = useNFTTokenIds(contractAddress);
   const { chainId, walletAddress } = useMoralisDapp();
-  const {resolveLink} = useIPFS();
-
-  // console.log(NFTTokenIds);
-
+  const { resolveLink } = useIPFS();
 
   return (
     <>
@@ -107,105 +37,13 @@ const Home = () => {
                   pathname: "/album",
                   state: e
                 }}>
-                  <img
-                    src={e.image}
-                    alt="bull"
-                    style={{ width: "150px", marginBottom: "10px" }}
-                  ></img>
-                  <p>{e.title}</p>
-                </Link>
-              </div>
-            ))}
-          </div>
-        </TabPane>
-        <TabPane tab="GENRES & MOODS" key="2">
-          <h1 className="featuredTitle">Pop Music</h1>
-          <div className="albums">
-            {library.slice(7, 13).map((e) => (
-              <div className="albumSelection">
-                <Link to={{
-                  pathname: "/album",
-                  state: e
-                }} state={e}>
-                  <img
-                    src={e.image}
-                    alt="bull"
-                    style={{ width: "150px", marginBottom: "10px" }}
-                  ></img>
-                  <p>{e.title}</p>
-                </Link>
-              </div>
-            ))}
-          </div>
-          <h1 className="featuredTitle">Top Hits</h1>
-          <div className="albums">
-            {library.slice(5, 11).map((e) => (
-              <div className="albumSelection">
-                <Link to={{
-                  pathname: "/album",
-                  state: e
-                }} state={e}>
-                  <img
-                    src={e.image}
-                    alt="bull"
-                    style={{ width: "150px", marginBottom: "10px" }}
-                  ></img>
-                  <p>{e.title}</p>
-                </Link>
-              </div>
-            ))}
-          </div>
-          <h1 className="featuredTitle">Country</h1>
-          <div className="albums">
-            {library.slice(0, 6).map((e) => (
-              <div className="albumSelection">
-                <Link to={{
-                  pathname: "/album",
-                  state: e
-                }} state={e}>
-                  <img
-                    src={e.image}
-                    alt="bull"
-                    style={{ width: "150px", marginBottom: "10px" }}
-                  ></img>
-                  <p>{e.title}</p>
-                </Link>
-              </div>
-            ))}
-          </div>
-          <h1 className="featuredTitle">Classics</h1>
-          <div className="albums">
-            {library.slice(5, 11).map((e) => (
-              <div className="albumSelection">
-                <Link to={{
-                  pathname: "/album",
-                  state: e
-                }} state={e}>
-                  <img
-                    src={e.image}
-                    alt="bull"
-                    style={{ width: "150px", marginBottom: "10px" }}
-                  ></img>
-                  <p>{e.title}</p>
-                </Link>
-              </div>
-            ))}
-          </div>
-        </TabPane>
-        <TabPane tab="NEW RELEASES" key="3">
-          <h1 className="featuredTitle">Hot Off The Press</h1>
-          <div className="albums">
-            {library.map((e) => (
-              <div className="albumSelection">
-                <Link to={{
-                  pathname: "/album",
-                  state: e
-                }} state={e}>
-                  <img
-                    src={e.image}
-                    alt="bull"
-                    style={{ width: "150px", marginBottom: "10px" }}
-                  ></img>
+                  <Image
+                    preview={false}
+                    src={resolveLink(e.image) || "error"}
+                    fallback={fallbackImg}
+                    alt="album image cover"
+                    style={styles.image}
+                  />
                   <p>{e.title}</p>
                 </Link>
               </div>
@@ -213,163 +51,74 @@ const Home = () => {
           </div>
         </TabPane>
         <TabPane tab="MUSIC NFTs" key="4">
-          <>
-            {totalNFTs !== undefined && (
-              <>
-                {!fetchSuccess && (
-                  <>
-                    <Alert
-                      message="Unable to fetch all NFT metadata... We are searching for a solution, please try again later!"
-                      type="warning"
-                    />
-                    <div style={{ marginBottom: "10px" }}></div>
-                  </>
-                )}
-
-
-                {/* <div style={styles.NFTs}>
-            {NFTTokenIds.slice(0, 20).map((nft, index) => (
-              <Card
-                hoverable
-                actions={[
-                  <Tooltip title="View On Blockexplorer">
-                    <FileSearchOutlined
-                      onClick={() =>
-                        window.open(
-                          `${getExplorer(chainId)}address/${nft.token_address}`,
-                          "_blank"
-                        )
-                      }
-                    />
-                  </Tooltip>,
-                  //   <Tooltip title="Buy NFT">
-                  //     <ShoppingCartOutlined onClick={() => handleBuyClick(nft)} />
-                  //   </Tooltip>,
-                ]}
-                style={{ width: 240, border: "2px solid #e7eaf3" }}
-                cover={
-                  <Image
-                    preview={false}
-                    src={nft.image || "error"}
-                    fallback={fallbackImg}
-                    alt=""
-                    style={{ height: "240px" }}
+          {totalNFTs !== undefined && (
+            <>
+              {!fetchSuccess && (
+                <>
+                  <Alert
+                    message="Unable to fetch all NFT metadata... We are searching for a solution, please try again later!"
+                    type="warning"
                   />
-                }
-                key={index}
-              >
-                <Meta title={`${nft.name} #${nft.token_id}`} description={`#${nft.contract_type}`} />
-              </Card>
-            ))}
-
-          </div> */}
-                <div className="albums">
-                  {NFTTokenIds.slice(0, 20).map((e, i) => (
-                    <div key={i} className="albumSelection">
-                      <Link to={{
-                        pathname: "/mintalbum",
-                        state: e
-                      }} state={e}>
-                        <img
-                          src={resolveLink(e.image)}
-                          alt={fallbackImg}
-                          style={{ width: "150px", marginBottom: "10px" }}
-                        ></img>
-                        <p>{e.metadata.name}</p>
-                      </Link>
-                    </div>
-                  ))}
-                </div>
-              </>
-            )}
-          </>
+                  <div style={{ marginBottom: "10px" }}></div>
+                </>
+              )}
+              <div className="albums">
+                {NFTTokenIds.slice(0, 20).map((e, i) => (
+                  <div key={i} className="albumSelection">
+                    <Link to={{
+                      pathname: "/mintalbum",
+                      state: e
+                    }} state={e}>
+                      <Image
+                        preview={false}
+                        src={resolveLink(e.image) || "error"}
+                        fallback={fallbackImg}
+                        alt="album image cover"
+                        style={styles.image}
+                      />
+                      <p>{e.metadata.name}</p>
+                    </Link>
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
         </TabPane >
 
-        {/* <TabPane tab="superfluid" key="5">
-          <div className="superfluid">
-            <CreateFlow />
-          </div>
-        </TabPane> */}
-
-        {/* <TabPane tab="VIDEO" key="5">
-          <video width="400" controls>
-            <source src="https://ipfs.io/ipfs/QmRPo2q2n23nVNyGpBuzihTnrV1usdFrh9qj4Rw8KvmU55" type="video/mp4" />
-          </video>
-        </TabPane> */}
-
-<TabPane tab="VIDEO NFTS" key="5">
-          <>
-            {totalNFTs !== undefined && (
-              <>
-                {!fetchSuccess && (
-                  <>
-                    <Alert
-                      message="Unable to fetch all NFT metadata... We are searching for a solution, please try again later!"
-                      type="warning"
-                    />
-                    <div style={{ marginBottom: "10px" }}></div>
-                  </>
-                )}
-
-
-                {/* <div style={styles.NFTs}>
-            {NFTTokenIds.slice(0, 20).map((nft, index) => (
-              <Card
-                hoverable
-                actions={[
-                  <Tooltip title="View On Blockexplorer">
-                    <FileSearchOutlined
-                      onClick={() =>
-                        window.open(
-                          `${getExplorer(chainId)}address/${nft.token_address}`,
-                          "_blank"
-                        )
-                      }
-                    />
-                  </Tooltip>,
-                  //   <Tooltip title="Buy NFT">
-                  //     <ShoppingCartOutlined onClick={() => handleBuyClick(nft)} />
-                  //   </Tooltip>,
-                ]}
-                style={{ width: 240, border: "2px solid #e7eaf3" }}
-                cover={
-                  <Image
-                    preview={false}
-                    src={nft.image || "error"}
-                    fallback={fallbackImg}
-                    alt=""
-                    style={{ height: "240px" }}
+        <TabPane tab="VIDEO NFTS" key="5">
+          {totalNFTs !== undefined && (
+            <>
+              {!fetchSuccess && (
+                <>
+                  <Alert
+                    message="Unable to fetch all NFT metadata... We are searching for a solution, please try again later!"
+                    type="warning"
                   />
-                }
-                key={index}
-              >
-                <Meta title={`${nft.name} #${nft.token_id}`} description={`#${nft.contract_type}`} />
-              </Card>
-            ))}
-
-          </div> */}
-                <div className="albums">
-                  {NFTTokenIds.slice(0, 20).map((e, i) => (
-                    <div key={i} className="albumSelection">
-                      <Link to={{
-                        pathname: "/videoalbum",
-                        state: e
-                      }} state={e}>
-                        <img
-                          src={resolveLink(e.image)}
-                          alt={fallbackImg}
-                          style={{ width: "150px", marginBottom: "10px" }}
-                        ></img>
-                        <p>{e.metadata.name}</p>
-                      </Link>
-                    </div>
-                  ))}
-                </div>
-              </>
-            )}
-          </>
+                  <div style={{ marginBottom: "10px" }}></div>
+                </>
+              )}
+              <div className="albums">
+                {NFTTokenIds.slice(0, 20).map((e, i) => (
+                  <div key={i} className="albumSelection">
+                    <Link to={{
+                      pathname: "/videoalbum",
+                      state: e
+                    }} state={e}>
+                      <Image
+                        preview={false}
+                        src={resolveLink(e.image) || "error"}
+                        fallback={fallbackImg}
+                        alt="video thumbnail image"
+                        style={styles.image}
+                      />
+                      <p>{e.metadata.name}</p>
+                    </Link>
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
         </TabPane >
-
       </Tabs>
     </>
   );

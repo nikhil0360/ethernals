@@ -1,15 +1,11 @@
-// just like /album but this page will be for our music in minted album
+// just like /album but this page will be for our video
 import React from "react";
 import { useLocation } from "react-router-dom";
 import "./Album.css";
 import Opensea from "./images/opensea.png";
-import { ClockCircleOutlined } from "@ant-design/icons";
-import { useNFTTokenIds } from "hooks/useNFTTokenIds";
-import { Card, Button, Modal, Tooltip, Image, Alert, Typography } from "antd";
 import { useIPFS } from "hooks/useIPFS";
-import styles from "components/NativeTransactions/styles";
 
-const VideoAlbum = ({ setNftAlbum }) => {
+const VideoAlbum = () => {
     const { state: album } = useLocation();
     const {resolveLink} = useIPFS();
 

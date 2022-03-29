@@ -1,13 +1,11 @@
-// just like /album but this page will be for our music in minted album
+// just like /album but this page will be for our music
 import React from "react";
 import { useLocation } from "react-router-dom";
 import "./Album.css";
 import Opensea from "./images/opensea.png";
 import { ClockCircleOutlined } from "@ant-design/icons";
-import { useNFTTokenIds } from "hooks/useNFTTokenIds";
-import { Card, Button, Modal, Tooltip, Image, Alert, Typography } from "antd";
 
-const MintAlbum = ({ setNftAlbum }) => {
+const MusicAlbum = ({ setNftAlbum }) => {
     const { state: album } = useLocation();
 
     return (
@@ -69,4 +67,4 @@ const MintAlbum = ({ setNftAlbum }) => {
     );
 };
 
-export default MintAlbum;
+export default MusicAlbum;

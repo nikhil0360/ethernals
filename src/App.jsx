@@ -26,7 +26,7 @@ import { SearchOutlined, DownCircleOutlined } from "@ant-design/icons";
 import Player from "./components/AudioPlayer";
 import MintMusic from "./MintMusic";
 import MintVideo from "./MintVideo";
-import MintAlbum from "./MintAlbum";
+import MintAlbum from "./MusicAlbum";
 import Profile from "./Profile";
 import VideoAlbum from "VideoAlbum";
 

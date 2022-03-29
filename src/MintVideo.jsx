@@ -3,10 +3,10 @@ import "./Album.css";
 import NativeBalance from "./components/NativeBalance";
 import Address from "./components/Address/Address";
 import Blockie from "./components/Blockie";
-import { Card, Button, Modal, Typography, Divider, Input } from "antd";
+import { Card, Button, Modal, Divider, Input } from "antd";
 import { useState } from "react";
 import axios from 'axios';
-import { MoralisDappProvider, useMoralisDapp } from "providers/MoralisDappProvider/MoralisDappProvider";
+import { useMoralisDapp } from "providers/MoralisDappProvider/MoralisDappProvider";
 import { useWeb3ExecuteFunction, useMoralis, useMoralisFile } from "react-moralis";
 
 function sleep(milliseconds) {
@@ -329,11 +329,13 @@ const MintVideo = () => {
             });
 
         console.log(metadataHash);
+        
 
+         // **************** WITH BICONOMY BELOW ***************** //
         const contractInst = new web3.eth.Contract(contractABIJson, contractAddress);
 
         const input = `ipfs://${metadataHash}`;
-
+        
         const transactionParams = {
             from: walletAddress,
             signatureType: biconomyProvider["EIP712_SIGN"]
@@ -352,6 +354,11 @@ const MintVideo = () => {
                 console.log(e);
                 setIsPending(false);
             });
+
+         // **************** WITH BICONOMY ABOVE ***************** //
+
+
+        // **************** WITHOUT BICONOMY BELOW ***************** //
 
         // const ops = {
         //     contractAddress: contractAddress,
@@ -375,6 +382,8 @@ const MintVideo = () => {
         //         failList();
         //     },
         // });
+
+        // **************** WITHOUT BICONOMY ABOVE ***************** //
     };
 
     return (
@@ -390,23 +399,16 @@ const MintVideo = () => {
                         </div>
                     }
                 >
-
                     <div style={styles.input}>
                         <Input id="artist" type="text" onChange={(e) => setArtist(e.target.value)} placeholder="Artist Name" />
                         <Input id="name" type="text" onChange={(e) => setName(e.target.value)} placeholder="Album Name" />
                         <Input id="year" type="number" onChange={(e) => setYear(e.target.value)} placeholder="Year of Creation" />
                     </div>
-
-
                     <label for="image">Image File: </label>
                     <Input type="file" style={styles.input} id="image" onChange={(e) => setImageFile(e.target.files[0])} />
                     <Divider />
-
                     <label for="video">Video File: </label>
                     <Input type="file" style={styles.input} id="video" onChange={(e) => setVideoFile(e.target.files[0])} />
-
-
-
                     <Button
                         type="primary"
                         size="large"
@@ -416,7 +418,6 @@ const MintVideo = () => {
                     >
                         Mint Now 👾
                     </Button>
-
                 </Card>
             </div>
         </>

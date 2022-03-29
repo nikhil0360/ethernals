@@ -1,14 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Framework } from "@superfluid-finance/sdk-core";
-// import {
-//   Button,
-//   Spinner,
-// } from "react-bootstrap";
 import "./createFlow.css";
 import { ethers } from "ethers";
 import { Card, Button, Modal, Typography, Divider, Input } from "antd";
-
-// let account;
 
 //where the Superfluid logic takes place
 async function createNewFlow(recipient, flowRate) {
@@ -27,7 +21,6 @@ async function createNewFlow(recipient, flowRate) {
       receiver: recipient,
       flowRate: flowRate,
       superToken: DAIx,
-      // userData?: string
     });
 
     console.log("Creating your stream...");
@@ -120,10 +113,6 @@ export const CreateFlow = () => {
       });
       console.log("Connected", accounts[0]);
       setCurrentAccount(accounts[0]);
-      // let account = currentAccount;
-      // Setup listener! This is for the case where a user comes to our site
-      // and connected their wallet for the first time.
-      // setupEventListener()
     } catch (error) {
       console.log(error);
     }
@@ -148,9 +137,6 @@ export const CreateFlow = () => {
       const account = accounts[0];
       console.log("Found an authorized account:", account);
       setCurrentAccount(account);
-      // Setup listener! This is for the case where a user comes to our site
-      // and ALREADY had their wallet connected + authorized.
-      // setupEventListener()
     } else {
       console.log("No authorized account found");
     }
@@ -175,85 +161,9 @@ export const CreateFlow = () => {
     }
   }
 
-  // function CreateButton({ isLoading, children, ...props }) {
-  //   return (
-  //     <Button variant="success" className="button" {...props}>
-  //       {isButtonLoading ? <Spinner animation="border" /> : children}
-  //     </Button>
-
-  //   );
-  // }
-
-  const handleRecipientChange = (e) => {
-    setRecipient(() => ([e.target.name] = e.target.value));
-  };
-
-  const handleFlowRateChange = (e) => {
-    setFlowRate(() => ([e.target.name] = e.target.value));
-    let newFlowRateDisplay = calculateFlowRate(e.target.value);
-    setFlowRateDisplay(newFlowRateDisplay.toString());
-  };
-
   return (
     <div className="superfluid">
-      {/* Create a flow */}
-      {/* {currentAccount === "" ? (
-        <button id="connectWallet" className="button" onClick={connectWallet}>
-          Connect Wallet
-        </button>
-      ) : (
-        <Card className="connectedWallet">
-          {`${currentAccount.substring(0, 4)}...${currentAccount.substring(
-            38
-          )}`}
-        </Card>
-      )} */}
-      {/* <Form>
-        <FormGroup className="mb-3">
-          <FormControl
-            name="recipient"
-            value={recipient}
-            onChange={handleRecipientChange}
-            placeholder="Enter recipient address"
-          ></FormControl>
-        </FormGroup>
-        <FormGroup className="mb-3">
-          <FormControl
-            name="flowRate"
-            value={flowRate}
-            onChange={handleFlowRateChange}
-            placeholder="Enter a flowRate in wei/second"
-          ></FormControl>
-        </FormGroup>
-        <CreateButton
-          onClick={() => {
-            setIsButtonLoading(true);
-            createNewFlow(recipient, flowRate);
-            setTimeout(() => {
-              setIsButtonLoading(false);
-            }, 1000);
-          }}
-        >
-          Click to Create Your Stream
-        </CreateButton>
-        <CreateButton
-          onClick={() => {
-            setIsButtonLoading(true);
-            deleteExistingFlow(recipient);
-            setTimeout(() => {
-              setIsButtonLoading(false);
-            }, 1000);
-          }}
-        >
-          Click to delete Your Stream
-        </CreateButton>
-      </Form> */}
-
       <div className="description">
-        {/* <p>
-          Go to the CreateFlow.js component and look at the <b>createFlow() </b>
-          function to see under the hood
-        </p> */}
         <p>
           Hello frnd, In order to use the platform you need to start a money
           stream which will act as a subscription. You can literally start or
@@ -262,7 +172,6 @@ export const CreateFlow = () => {
         <div className="calculation">
           <p>Your flow will be equal to:</p>
           <p>
-            {/* <b>${flowRateDisplay !== " " ? flowRateDisplay : 0}</b> DAIx/month */}
             <b>$2</b> DAIx/month
           </p>
         </div>
@@ -272,7 +181,6 @@ export const CreateFlow = () => {
         <Button
           type="primary"
           size="large"
-          // loading={isPending}
           style={{
             width: "100%",
             margin: "10px",
@@ -292,7 +200,6 @@ export const CreateFlow = () => {
         <Button
           type="primary"
           size="large"
-          // loading={isPending}
           style={{
             width: "100%",
             margin: "10px",
