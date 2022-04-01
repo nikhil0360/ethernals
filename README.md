@@ -15,6 +15,12 @@ This project is our submission for Etherenals, an ETHIndia Hackathon. We are mak
 
 ## ⛽️❌ `Biconomy` for meta-transactions (gasless transactions)
 
+## 🍦 `Gelato` for automating minting of PoM (Proof of Membership)
+
+## ⛓ `Chainlink` for making random SVG NFT
+
+## 💿 `IPFS` for storing NFT metadata
+
 
 # `ethereum-boilerplate`
 

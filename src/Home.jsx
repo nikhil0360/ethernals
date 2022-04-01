@@ -63,23 +63,28 @@ const Home = () => {
                 </>
               )}
               <div className="albums">
-                {NFTTokenIds.slice(0, 20).map((e, i) => (
-                  <div key={i} className="albumSelection">
-                    <Link to={{
-                      pathname: "/mintalbum",
-                      state: e
-                    }} state={e}>
-                      <Image
-                        preview={false}
-                        src={resolveLink(e.image) || "error"}
-                        fallback={fallbackImg}
-                        alt="album image cover"
-                        style={styles.image}
-                      />
-                      <p>{e.metadata.name}</p>
-                    </Link>
-                  </div>
-                ))}
+                {NFTTokenIds.slice(0, 20).map((e, i) => {
+                  return e.metadata.type == "music" ?
+                  (
+                    <div key={i} className="albumSelection">
+                      <Link to={{
+                        pathname: "/videoalbum",
+                        state: e
+                      }} state={e}>
+                        <Image
+                          preview={false}
+                          src={resolveLink(e.image) || "error"}
+                          fallback={fallbackImg}
+                          alt="video thumbnail image"
+                          style={styles.image}
+                        />
+                        <p>{e.metadata.name}</p>
+                      </Link>
+                    </div>
+                    ) : 
+                   null
+                }
+                )}
               </div>
             </>
           )}
@@ -98,23 +103,29 @@ const Home = () => {
                 </>
               )}
               <div className="albums">
-                {NFTTokenIds.slice(0, 20).map((e, i) => (
-                  <div key={i} className="albumSelection">
-                    <Link to={{
-                      pathname: "/videoalbum",
-                      state: e
-                    }} state={e}>
-                      <Image
-                        preview={false}
-                        src={resolveLink(e.image) || "error"}
-                        fallback={fallbackImg}
-                        alt="video thumbnail image"
-                        style={styles.image}
-                      />
-                      <p>{e.metadata.name}</p>
-                    </Link>
-                  </div>
-                ))}
+                {NFTTokenIds.slice(0, 20).map((e, i) => {
+                  return e.metadata.type == "video" ?
+
+                  (
+                    <div key={i} className="albumSelection">
+                      <Link to={{
+                        pathname: "/videoalbum",
+                        state: e
+                      }} state={e}>
+                        <Image
+                          preview={false}
+                          src={resolveLink(e.image) || "error"}
+                          fallback={fallbackImg}
+                          alt="video thumbnail image"
+                          style={styles.image}
+                        />
+                        <p>{e.metadata.name}</p>
+                      </Link>
+                    </div>
+                    ) : 
+                    null
+                }
+                )}
               </div>
             </>
           )}

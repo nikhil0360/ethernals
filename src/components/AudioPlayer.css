@@ -1,6 +1,6 @@
 .volume {
     width:100px;
-  }
+}
   
 .soundDiv {
     display: flex;
@@ -9,7 +9,7 @@
     align-items:center;
     width: 300px;
     justify-content: end;
-  }
+}
 
 .pauseplay {
     font-size: 35px;

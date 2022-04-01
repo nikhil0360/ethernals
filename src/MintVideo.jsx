@@ -306,7 +306,8 @@ const MintVideo = () => {
             artist: artist,
             year: year,
             image: "/ipfs/" + imageHash,
-            animation_url: "/ipfs/" + videoHash
+            animation_url: "/ipfs/" + videoHash,
+            type: "video"
         }
 
         const base64 = btoa(JSON.stringify(metadata));

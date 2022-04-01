@@ -132,7 +132,8 @@ const MintMusic = () => {
             artist: artist,
             year: year,
             image: "/ipfs/" + imageHash,
-            animation_url: "/ipfs/" + musicHash
+            animation_url: "/ipfs/" + musicHash,
+            type: "music"
         }
 
         const base64 = btoa(JSON.stringify(metadata));
