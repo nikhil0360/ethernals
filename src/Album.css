@@ -114,3 +114,11 @@
     margin: auto;
     display: flex;
 }
+
+.card{
+    background: rgba( 3, 0, 0, 0.4 );
+    backdrop-filter: blur( 5px );
+    -webkit-backdrop-filter: blur( 5px );
+    border-radius: 10px;
+    border: 0px
+}

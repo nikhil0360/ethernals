@@ -1,5 +1,6 @@
 .description {
     margin-top: 3%;
+    color: white;
   }
   
   .mb-3 {
@@ -8,7 +9,8 @@
   }
   
   .calculation {
-    border: 2px solid green;
+    border: 2px solid rgb(81, 81, 81);
+    border-radius: 10px;
     padding: 2.5%;
     margin-left: 5%;
     margin-right: 5%;
@@ -27,8 +29,10 @@
     margin-bottom: 3%;
   }
 
-  .superfluid{
+  .createFlow{
     font-family: sans-serif;
     text-align: center;
     margin-top: 1%;
+    display: flex;
+    flex-direction: column;
 }

@@ -68,7 +68,7 @@ const Home = () => {
                   (
                     <div key={i} className="albumSelection">
                       <Link to={{
-                        pathname: "/videoalbum",
+                        pathname: "/album",
                         state: e
                       }} state={e}>
                         <Image

@@ -28,13 +28,14 @@ const styles = {
         alignItems: "center",
     },
     card: {
-        boxShadow: "0 0.5rem 1.2rem rgb(189 197 209 / 20%)",
-        border: "1px solid #e7eaf3",
-        borderRadius: "1rem",
+        // boxShadow: "0 0.5rem 1.2rem rgb(189 197 209 / 20%)",
+        // border: "1px solid #e7eaf3",
+        // borderRadius: "1rem",
         width: "450px",
         fontSize: "16px",
         fontWeight: "500",
         margin: "auto",
+        color: "white",
     },
 
     steps_action: {
@@ -42,7 +43,11 @@ const styles = {
     },
     input: {
         fontSize: "16px",
-        margin: "10px",
+        marginTop: "10px",
+        marginBottom: "10px",
+        background: "transparent",
+        border: "0px",
+        color: "white",
     },
 };
 
@@ -392,18 +397,19 @@ const MintVideo = () => {
             <div>
                 <Card
                     style={styles.card}
-                    title={
-                        <div style={styles.header}>
-                            <Blockie scale={5} avatar currentWallet />
-                            <Address size="6" copyable />
-                            <NativeBalance />
-                        </div>
-                    }
+                    // title={
+                    //     <div style={styles.header}>
+                    //         <Blockie scale={5} avatar currentWallet />
+                    //         <Address size="6" copyable />
+                    //         <NativeBalance />
+                    //     </div>
+                    // }
+                    className="card"
                 >
                     <div style={styles.input}>
-                        <Input id="artist" type="text" onChange={(e) => setArtist(e.target.value)} placeholder="Artist Name" />
-                        <Input id="name" type="text" onChange={(e) => setName(e.target.value)} placeholder="Album Name" />
-                        <Input id="year" type="number" onChange={(e) => setYear(e.target.value)} placeholder="Year of Creation" />
+                        <Input id="artist" type="text" style={styles.input} onChange={(e) => setArtist(e.target.value)} placeholder="Artist Name" />
+                        <Input id="name" type="text" style={styles.input} onChange={(e) => setName(e.target.value)} placeholder="Album Name" />
+                        <Input id="year" type="number" style={styles.input} onChange={(e) => setYear(e.target.value)} placeholder="Year of Creation" />
                     </div>
                     <label for="image">Image File: </label>
                     <Input type="file" style={styles.input} id="image" onChange={(e) => setImageFile(e.target.files[0])} />
@@ -414,10 +420,10 @@ const MintVideo = () => {
                         type="primary"
                         size="large"
                         loading={isPending}
-                        style={{ width: "100%", marginTop: "0px", marginBottom: "20px" }}
+                        style={{ width: "100%", marginTop: "10px", marginBottom: "10px", background: "#824ee2", border: "0px"}}
                         onClick={mint}
                     >
-                        Mint Now 👾
+                        MINT MUSIC 🎥
                     </Button>
                 </Card>
             </div>

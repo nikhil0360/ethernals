@@ -162,29 +162,18 @@ export const CreateFlow = () => {
   }
 
   return (
-    <div className="superfluid">
-      <div className="description">
-        <p>
-          Hello frnd, In order to use the platform you need to start a money
-          stream which will act as a subscription. You can literally start or
-          end your subscription anytime.
-        </p>
-        <div className="calculation">
-          <p>Your flow will be equal to:</p>
-          <p>
-            <b>$2</b> DAIx/month
-          </p>
-        </div>
-      </div>
+    <div className="createFlow">
+      
 
-      <div style={{ margin: "20px" }}>
+      <div>
         <Button
           type="primary"
           size="large"
           style={{
             width: "100%",
-            margin: "10px",
-            background: "#52c41a",
+            background: "#824ee2",
+            marginTop: "20px",
+            border: "0px"
           }}
           loading={isButtonLoading1}
           onClick={() => {
@@ -202,8 +191,9 @@ export const CreateFlow = () => {
           size="large"
           style={{
             width: "100%",
-            margin: "10px",
-            background: "#f5222d",
+            background: "#ff4d4f",
+            marginTop: "20px",
+            border: "0px"
           }}
           loading={isButtonLoading2}
           onClick={() => {
@@ -216,6 +206,20 @@ export const CreateFlow = () => {
         >
           Stop Stream
         </Button>
+      </div>
+
+      <div className="description">
+        {/* <p>
+          Hello frnd, In order to use the platform you need to start a money
+          stream which will act as a subscription. You can literally start or
+          end your subscription anytime.
+        </p> */}
+        <div className="calculation">
+          <p>Your flow will be equal to:</p>
+          <p>
+            <b>$2</b> DAIx/month
+          </p>
+        </div>
       </div>
     </div>
   );

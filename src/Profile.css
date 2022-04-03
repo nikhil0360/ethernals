@@ -1,14 +1,25 @@
 .profile{
     display: flex;
     justify-content: space-around;
+    flex-direction: column;
     height: 100%;
 }
 
-.superfluidStream{
-    display: flex;
+
+.userProfile{
+   justify-content: space-around;
+   display: flex;
 }
 
-.superfluidDistribution{
-    display: flex;
+.superfluid{
+   display: flex;
+   justify-content: space-around;
 }
 
+.card{
+    background: rgba( 3, 0, 0, 0.4 );
+    backdrop-filter: blur( 5px );
+    -webkit-backdrop-filter: blur( 5px );
+    border-radius: 10px;
+    border: 0px;
+}
